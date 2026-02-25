@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.5.2
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: geojupyter@gmail.com
+author_name: GeoJupyter Community
+has_ai_rules: false
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: prototype-gui2cell
+project_short_description: TO DO.
+python_name: prototype_gui2cell
+repository: https://github.com/geojupyter/prototype-gui2cell
+test: true
+
