@@ -73,7 +73,7 @@ This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
 To execute them, execute:
 
 ```sh
-jlpm
+uv run jlpm
 jlpm test
 ```
 
