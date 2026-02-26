@@ -74,7 +74,7 @@ To execute them, execute:
 
 ```sh
 uv run jlpm
-jlpm test
+uv run jlpm test
 ```
 
 #### Integration tests
