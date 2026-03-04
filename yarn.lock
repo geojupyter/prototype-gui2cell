@@ -2071,6 +2071,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jupyter-widgets/base@npm:^6.0.11":
+  version: 6.0.11
+  resolution: "@jupyter-widgets/base@npm:6.0.11"
+  dependencies:
+    "@jupyterlab/services": ^6 || ^7
+    "@lumino/coreutils": ^1 || ^2
+    "@lumino/messaging": ^1 || ^2
+    "@lumino/widgets": ^1 || ^2
+    "@types/backbone": 1.4.14
+    "@types/lodash": ^4.14.134
+    backbone: 1.4.0
+    jquery: ^3.1.1
+    lodash: ^4.17.4
+  checksum: 7ec558edd5519e76a4e1a6d5209927b34f19d4e4a3b76a4dba89f67784dd50fef8b536cd15694576fa1930e3c92822c7565ddb47d1b558444c596af24b78790b
+  languageName: node
+  linkType: hard
+
 "@jupyter/react-components@npm:^0.16.6":
   version: 0.16.7
   resolution: "@jupyter/react-components@npm:0.16.7"
@@ -2107,7 +2124,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/application@npm:^4.0.0, @jupyterlab/application@npm:^4.5.5":
+"@jupyterlab/application@npm:^4.5.5":
   version: 4.5.5
   resolution: "@jupyterlab/application@npm:4.5.5"
   dependencies:
@@ -2603,7 +2620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/services@npm:^7.5.5":
+"@jupyterlab/services@npm:^6 || ^7, @jupyterlab/services@npm:^7.5.5":
   version: 7.5.5
   resolution: "@jupyterlab/services@npm:7.5.5"
   dependencies:
@@ -2972,7 +2989,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lumino/coreutils@npm:^1.11.0 || ^2.0.0, @lumino/coreutils@npm:^1.11.0 || ^2.2.2, @lumino/coreutils@npm:^2.2.2":
+"@lumino/coreutils@npm:^1 || ^2, @lumino/coreutils@npm:^1.11.0 || ^2.0.0, @lumino/coreutils@npm:^1.11.0 || ^2.2.2, @lumino/coreutils@npm:^2.2.2":
   version: 2.2.2
   resolution: "@lumino/coreutils@npm:2.2.2"
   dependencies:
@@ -3014,7 +3031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lumino/messaging@npm:^2.0.4":
+"@lumino/messaging@npm:^1 || ^2, @lumino/messaging@npm:^2.0.4":
   version: 2.0.4
   resolution: "@lumino/messaging@npm:2.0.4"
   dependencies:
@@ -3061,7 +3078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lumino/widgets@npm:^1.37.2 || ^2.7.5, @lumino/widgets@npm:^2.7.5":
+"@lumino/widgets@npm:^1 || ^2, @lumino/widgets@npm:^1.37.2 || ^2.7.5, @lumino/widgets@npm:^2.7.5":
   version: 2.7.5
   resolution: "@lumino/widgets@npm:2.7.5"
   dependencies:
@@ -3306,6 +3323,16 @@ __metadata:
   dependencies:
     "@babel/types": ^7.28.2
   checksum: e3124e6575b2f70de338eab8a9c704d315a86c46a8e395b6ec78a0157ab7b5fd877289556a57dcf28e4ff3543714e359cc1182d4afc4bcb4f3575a0bbafa0dad
+  languageName: node
+  linkType: hard
+
+"@types/backbone@npm:1.4.14":
+  version: 1.4.14
+  resolution: "@types/backbone@npm:1.4.14"
+  dependencies:
+    "@types/jquery": "*"
+    "@types/underscore": "*"
+  checksum: 4f44bfb71d75332b5de610be7687f4ae523ad4ef02da844a828403b534b6a94a6288b32cab64371d0ad526e35cfed511652ac53af22d0b9caaac3f4cfb4375dd
   languageName: node
   linkType: hard
 
@@ -3668,6 +3695,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jquery@npm:*":
+  version: 4.0.0
+  resolution: "@types/jquery@npm:4.0.0"
+  checksum: d70744bde560144b758d25a5cfb43cd009c99afe41fb59ceebf405c0547a4ac41e29ccf1ac64b7f9b945c91ed7dac272f686208d4ffe3a6ff41d0d21c3693ac4
+  languageName: node
+  linkType: hard
+
 "@types/jsdom@npm:^20.0.0":
   version: 20.0.1
   resolution: "@types/jsdom@npm:20.0.1"
@@ -3683,6 +3717,13 @@ __metadata:
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 97ed0cb44d4070aecea772b7b2e2ed971e10c81ec87dd4ecc160322ffa55ff330dace1793489540e3e318d90942064bb697cc0f8989391797792d919737b3b98
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.134":
+  version: 4.17.24
+  resolution: "@types/lodash@npm:4.17.24"
+  checksum: 2b254973145ecdf9b052d83f00ebaa111245f319d45b217c78f81cea8892fda81180fc749bd50a99c08f4e5efceb834c774d3f74153a50a9c4a28648343dc9f3
   languageName: node
   linkType: hard
 
@@ -3777,6 +3818,13 @@ __metadata:
   version: 2.0.7
   resolution: "@types/trusted-types@npm:2.0.7"
   checksum: 8e4202766a65877efcf5d5a41b7dd458480b36195e580a3b1085ad21e948bc417d55d6f8af1fd2a7ad008015d4117d5fdfe432731157da3c68678487174e4ba3
+  languageName: node
+  linkType: hard
+
+"@types/underscore@npm:*":
+  version: 1.13.0
+  resolution: "@types/underscore@npm:1.13.0"
+  checksum: 1411cbeb1b743629d504fcb2037b393d11eb207459b9d560f71304183115e30ba145f83b819ffcc8a0d5d4eccfb76bebb0ef7aab8f96a04d88d99ff9dfe503c6
   languageName: node
   linkType: hard
 
@@ -4504,6 +4552,15 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0
   checksum: aa4ff2a8a728d9d698ed521e3461a109a1e66202b13d3494e41eea30729a5e7cc03b3a2d56c594423a135429c37bf63a9fa8b0b9ce275298be3095a88c69f6fb
+  languageName: node
+  linkType: hard
+
+"backbone@npm:1.4.0":
+  version: 1.4.0
+  resolution: "backbone@npm:1.4.0"
+  dependencies:
+    underscore: ">=1.8.3"
+  checksum: 09abdf184c485a4cd2c68218298cf772fbefeaa166ef8eb795cdb0159b4ad1d2f6823dde089352eaf0be929e5bbef67c57555722f4d1886f969d954f77814870
   languageName: node
   linkType: hard
 
@@ -7618,6 +7675,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jquery@npm:^3.1.1":
+  version: 3.7.1
+  resolution: "jquery@npm:3.7.1"
+  checksum: 4370b8139d6ae82867eb6f7f21d1edccf1d1bdf41c0840920ea80d366c2cd5dbe1ceebb110ee9772aa839b04400faa1572c5c560b507c688ed7b61cea26c0e27
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -9058,7 +9122,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prototype-gui2cell@workspace:."
   dependencies:
-    "@jupyterlab/application": ^4.0.0
+    "@jupyter-widgets/base": ^6.0.11
     "@jupyterlab/builder": ^4.0.0
     "@jupyterlab/testutils": ^4.0.0
     "@types/jest": ^29.2.0
@@ -10360,6 +10424,13 @@ __metadata:
   bin:
     uglifyjs: bin/uglifyjs
   checksum: 7ed6272fba562eb6a3149cfd13cda662f115847865c03099e3995a0e7a910eba37b82d4fccf9e88271bb2bcbe505bb374967450f433c17fa27aa36d94a8d0553
+  languageName: node
+  linkType: hard
+
+"underscore@npm:>=1.8.3":
+  version: 1.13.8
+  resolution: "underscore@npm:1.13.8"
+  checksum: 52a165aa5e468cf64eb5117b9eb484d56c2102343eb67452ddb6edefa0ff2356afa0e41e30589d4f47005d473739fcb9cfcb6df3c0bca5c4ac19539b035a8ec2
   languageName: node
   linkType: hard
 

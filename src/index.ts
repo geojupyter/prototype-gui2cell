@@ -1,17 +1,27 @@
-import {
-  JupyterFrontEnd,
-  JupyterFrontEndPlugin
-} from '@jupyterlab/application';
+import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
+import { Application, IPlugin } from '@lumino/application';
+import { Widget } from '@lumino/widgets';
+
+import { MODULE_NAME, MODULE_VERSION } from './version';
+import * as widgetExports from './widget';
+
+const EXTENSION_ID = "prototype-gui2cell:plugin"
 
 /**
  * Initialization data for the prototype-gui2cell extension.
  */
-const plugin: JupyterFrontEndPlugin<void> = {
-  id: 'prototype-gui2cell:plugin',
-  description: 'TO DO.',
+const plugin: IPlugin<Application<Widget>, void> = {
+  id: EXTENSION_ID,
+  description: 'TODO.',
+  requires: [IJupyterWidgetRegistry],
   autoStart: true,
-  activate: (app: JupyterFrontEnd) => {
-    console.log('JupyterLab extension prototype-gui2cell is activated!');
+  activate: (app: Application<Widget>, registry: IJupyterWidgetRegistry): void => {
+    registry.registerWidget({
+      name: MODULE_NAME,
+      version: MODULE_VERSION,
+      exports: widgetExports,
+    });
+    console.info('JupyterLab extension prototype-gui2cell is activated!');
   }
 };
 
