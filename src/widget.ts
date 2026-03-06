@@ -40,14 +40,19 @@ export class ExampleModel extends DOMWidgetModel {
 }
 
 export class ExampleView extends DOMWidgetView {
-  render() {
-    this.el.classList.add('custom-widget');
+  private button!: HTMLButtonElement;
 
-    this.value_changed();
+  render() {
+    this.button = document.createElement('button');
+    this.button.textContent = 'test' //this.model.get('value');
+    this.button.onclick = () => console.log('Button clicked');
+    this.el.appendChild(this.button);
+
+    this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
   }
 
   value_changed() {
-    this.el.textContent = this.model.get('value');
+    this.button.textContent = this.model.get('value');
   }
 }
