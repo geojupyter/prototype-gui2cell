@@ -9,8 +9,8 @@ class Gui2CellWidget(DOMWidget):
     _model_name = Unicode('ExampleModel').tag(sync=True)
     _model_module = Unicode(MODULE_NAME).tag(sync=True)
     _model_module_version = Unicode(MODULE_VERSION).tag(sync=True)
-    _view_name = Unicode(MODULE_NAME).tag(sync=True)
-    _view_module = Unicode(MODULE_VERSION).tag(sync=True)
-    _view_module_version = Unicode('bar').tag(sync=True)
+    _view_name = Unicode('ExampleView').tag(sync=True)
+    _view_module = Unicode(MODULE_NAME).tag(sync=True)
+    _view_module_version = Unicode(MODULE_VERSION).tag(sync=True)
 
     value = Unicode('Hello World').tag(sync=True)
