@@ -5,7 +5,9 @@ import {
   DOMWidgetModel,
   DOMWidgetView,
   ISerializers,
+  
 } from '@jupyter-widgets/base';
+import { INotebookTracker } from '@jupyterlab/notebook';
 
 import { MODULE_NAME, MODULE_VERSION } from './version';
 
@@ -40,12 +42,28 @@ export class ExampleModel extends DOMWidgetModel {
 }
 
 export class ExampleView extends DOMWidgetView {
+  static tracker: INotebookTracker;
+
   private button!: HTMLButtonElement;
 
   render() {
     this.button = document.createElement('button');
-    this.button.textContent = 'test' //this.model.get('value');
-    this.button.onclick = () => console.log('Button clicked');
+    this.button.textContent = 'test'; //this.model.get('value');
+
+
+    this.button.onclick = () => {
+      const notebook = ExampleView.tracker?.currentWidget?.content;
+      if (!notebook?.model) {
+        return;
+      }
+      notebook.model.sharedModel.insertCell(0, {
+        cell_type: 'code',
+        source: 'print("hello")',
+        metadata: {},
+      });
+    };
+
+
     this.el.appendChild(this.button);
 
     this.el.classList.add('custom-widget');
