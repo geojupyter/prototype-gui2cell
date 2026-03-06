@@ -56,9 +56,9 @@ export class ExampleView extends DOMWidgetView {
       if (!notebook?.model) {
         return;
       }
-      notebook.model.sharedModel.insertCell(0, {
+      notebook.model.sharedModel.insertCell(notebook.widgets.findIndex(cell => cell.node.contains(this.el))+1, {
         cell_type: 'code',
-        source: 'print("hello")',
+        source: 'print("hello hi")',
         metadata: {},
       });
     };
@@ -68,6 +68,7 @@ export class ExampleView extends DOMWidgetView {
 
     this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
+
   }
 
   value_changed() {
