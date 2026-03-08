@@ -5,6 +5,7 @@ except ImportError:
     # in editable mode with pip. It is highly recommended to install
     # the package from a stable release or in editable mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
     import warnings
+
     warnings.warn("Importing 'prototype_gui2cell' outside a proper installation.")
     __version__ = "dev"
 
@@ -12,7 +13,4 @@ from prototype_gui2cell.widget import Gui2CellWidget
 
 
 def _jupyter_labextension_paths():
-    return [{
-        "src": "labextension",
-        "dest": "prototype-gui2cell"
-    }]
+    return [{"src": "labextension", "dest": "prototype-gui2cell"}]

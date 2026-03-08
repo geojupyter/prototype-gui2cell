@@ -41,6 +41,9 @@ The `jlpm` command is JupyterLab's pinned version of
 # Set up a virtual environment and install package in development mode
 uv sync
 
+#install as development extension
+jupyter labextension develop . --overwrite
+
 # Rebuild extension Typescript source after making changes
 # IMPORTANT: Unlike the steps above which are performed only once, do this step
 # every time you make a change.
