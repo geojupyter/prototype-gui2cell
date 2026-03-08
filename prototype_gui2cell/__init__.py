@@ -9,6 +9,8 @@ except ImportError:
     warnings.warn("Importing 'prototype_gui2cell' outside a proper installation.")
     __version__ = "dev"
 
+from prototype_gui2cell.widget import Gui2CellWidget as Gui2CellWidget
+
 
 def _jupyter_labextension_paths():
     return [{"src": "labextension", "dest": "prototype-gui2cell"}]

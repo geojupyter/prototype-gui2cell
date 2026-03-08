@@ -23,6 +23,8 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+    "ipywidgets>=8.1.8",
+    "traitlets>=5.14.3",
 ]
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
