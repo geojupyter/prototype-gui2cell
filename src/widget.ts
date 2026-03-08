@@ -4,8 +4,7 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
-  ISerializers,
-  
+  ISerializers
 } from '@jupyter-widgets/base';
 import { INotebookTracker } from '@jupyterlab/notebook';
 
@@ -24,12 +23,12 @@ export class ExampleModel extends DOMWidgetModel {
       _view_name: ExampleModel.view_name,
       _view_module: ExampleModel.view_module,
       _view_module_version: ExampleModel.view_module_version,
-      value: 'Hello World',
+      value: 'Hello World'
     };
   }
 
   static serializers: ISerializers = {
-    ...DOMWidgetModel.serializers,
+    ...DOMWidgetModel.serializers
     // Add any extra serializers here
   };
 
@@ -50,25 +49,25 @@ export class ExampleView extends DOMWidgetView {
     this.button = document.createElement('button');
     this.button.textContent = 'test'; //this.model.get('value');
 
-
     this.button.onclick = () => {
       const notebook = ExampleView.tracker?.currentWidget?.content;
       if (!notebook?.model) {
         return;
       }
-      notebook.model.sharedModel.insertCell(notebook.widgets.findIndex(cell => cell.node.contains(this.el))+1, {
-        cell_type: 'code',
-        source: 'print("hello hi")',
-        metadata: {},
-      });
+      notebook.model.sharedModel.insertCell(
+        notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
+        {
+          cell_type: 'code',
+          source: 'print("hello hi")',
+          metadata: {}
+        }
+      );
     };
-
 
     this.el.appendChild(this.button);
 
     this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
-
   }
 
   value_changed() {

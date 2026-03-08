@@ -6,7 +6,7 @@ import { Widget } from '@lumino/widgets';
 import { MODULE_NAME, MODULE_VERSION } from './version';
 import * as widgetExports from './widget';
 
-const EXTENSION_ID = 'prototype-gui2cell:plugin'
+const EXTENSION_ID = 'prototype-gui2cell:plugin';
 
 /**
  * Initialization data for the prototype-gui2cell extension.
@@ -25,7 +25,7 @@ const plugin: IPlugin<Application<Widget>, void> = {
     registry.registerWidget({
       name: MODULE_NAME,
       version: MODULE_VERSION,
-      exports: widgetExports,
+      exports: widgetExports
     });
     console.info('JupyterLab extension prototype-gui2cell is activated!');
   }
