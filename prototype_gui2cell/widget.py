@@ -14,4 +14,4 @@ class Gui2CellWidget(DOMWidget):
     _view_module = Unicode(MODULE_NAME).tag(sync=True)
     _view_module_version = Unicode(MODULE_VERSION).tag(sync=True)
 
-    value = Unicode("Hello World").tag(sync=True)
+    value = Unicode("print('hello world')").tag(sync=True)
