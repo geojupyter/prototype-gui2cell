@@ -22,7 +22,7 @@ export class ExampleModel extends DOMWidgetModel {
       _model_module_version: ExampleModel.model_module_version,
       _view_name: ExampleModel.view_name,
       _view_module: ExampleModel.view_module,
-      _view_module_version: ExampleModel.view_module_version,
+      _view_module_version: ExampleModel.view_module_version
     };
   }
 
