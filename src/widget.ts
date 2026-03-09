@@ -44,6 +44,7 @@ export class ExampleView extends DOMWidgetView {
 
   private button!: HTMLButtonElement;
   private textarea!: HTMLTextAreaElement;
+  private select!: HTMLSelectElement;
 
   render() {
     this.textarea = document.createElement('textarea');
@@ -51,6 +52,13 @@ export class ExampleView extends DOMWidgetView {
 
     this.button = document.createElement('button');
     this.button.textContent = 'test'; //this.model.get('value');
+
+    this.select = document.createElement('select');
+    for (const country of this.model.get('countries')) {
+      const option = document.createElement('option');
+      option.textContent = country;
+      this.select.appendChild(option);
+    }
 
     this.button.onclick = () => {
       const notebook = ExampleView.tracker?.currentWidget?.content;
@@ -68,6 +76,7 @@ export class ExampleView extends DOMWidgetView {
     };
 
     this.el.appendChild(this.textarea);
+    this.el.appendChild(this.select);
     this.el.appendChild(this.button);
     this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
