@@ -61,18 +61,37 @@ export class ExampleView extends DOMWidgetView {
     }
 
     this.button.onclick = () => {
+
+      this.model.set('selected_country', this.select.value);
+      this.model.save_changes();
+
       const notebook = ExampleView.tracker?.currentWidget?.content;
       if (!notebook?.model) {
         return;
       }
-      notebook.model.sharedModel.insertCell(
-        notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
-        {
-          cell_type: 'code',
-          source: "print('" + String(this.textarea.value) + "')",
-          metadata: {}
-        }
-      );
+      const notebookModel = notebook.model;
+
+      this.model.on('change:filtered_geojson', () => {
+
+        const map_code =
+          'from ipyleaflet import Map, GeoJSON\n' +
+          'import json\n' +
+          'm = Map()\n' +
+          'm.add(GeoJSON(data=json.loads("""'+
+          this.model.get('filtered_geojson')+
+          '""")))\n' +
+          'm'
+          ;
+
+        notebookModel.sharedModel.insertCell(
+          notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
+          {
+            cell_type: 'code',
+            source: "print('" + String(this.textarea.value) + "')"+"\n" + map_code,
+            metadata: {}
+          }
+        );
+      });
     };
 
     this.el.appendChild(this.textarea);
