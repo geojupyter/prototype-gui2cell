@@ -61,7 +61,7 @@ export class ExampleView extends DOMWidgetView {
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
-          source: this.textarea.value,
+          source: "print('" + String(this.textarea.value) + "')",
           metadata: {}
         }
       );
