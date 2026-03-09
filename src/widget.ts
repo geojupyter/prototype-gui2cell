@@ -46,8 +46,6 @@ export class ExampleView extends DOMWidgetView {
   private textarea!: HTMLTextAreaElement;
 
   render() {
-    console.log('build test: test 14');
-
     this.textarea = document.createElement('textarea');
     this.textarea.value = this.model.get('value');
 
