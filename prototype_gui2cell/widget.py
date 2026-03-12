@@ -1,12 +1,14 @@
 from pathlib import Path
 
 from ipywidgets import DOMWidget
-from traitlets import List, Unicode
+from traitlets import Unicode
 
 MODULE_NAME = "prototype-gui2cell"
 MODULE_VERSION = "^0.1.0"
 
-ADMIN_BOUNDARIES_GEOJSON_FILE = Path(__file__).parent / "data" / "ne_110m_admin_0_countries.geojson"
+ADMIN_BOUNDARIES_GEOJSON_FILE = (
+    Path(__file__).parent / "data" / "ne_110m_admin_0_countries.geojson"
+)
 ADMIN_BOUNDARIES_GEOJSON = ADMIN_BOUNDARIES_GEOJSON_FILE.read_text()
 
 
