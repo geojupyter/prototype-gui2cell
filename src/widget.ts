@@ -42,17 +42,18 @@ export class ExampleModel extends DOMWidgetModel {
 export class ExampleView extends DOMWidgetView {
   static tracker: INotebookTracker;
 
-
   private select!: HTMLSelectElement;
   private button!: HTMLButtonElement;
   private textarea!: HTMLTextAreaElement;
 
   render() {
     // TODO: Type as GeoJSON (@types/geojson)
-    const adminBoundariesGeoJson: any = JSON.parse(this.model.get('admin_boundaries_geojson'));
-    const countries = adminBoundariesGeoJson["features"].map(
-      (f: any) => f["properties"]["NAME"] as string
-    ).sort();
+    const adminBoundariesGeoJson: any = JSON.parse(
+      this.model.get('admin_boundaries_geojson')
+    );
+    const countries = adminBoundariesGeoJson['features']
+      .map((f: any) => f['properties']['NAME'] as string)
+      .sort();
 
     this.textarea = document.createElement('textarea');
     this.textarea.value = this.model.get('value');
@@ -70,10 +71,12 @@ export class ExampleView extends DOMWidgetView {
     const notebook = ExampleView.tracker?.currentWidget?.content;
 
     this.button.onclick = () => {
-      if (!notebook?.model) return;  // Should never happen; just a typeguard
+      if (!notebook?.model) {
+        return;
+      } // Should never happen; just a typeguard
 
-      const geoJson = adminBoundariesGeoJson["features"].find(
-        (f: any) => f["properties"]["NAME"] === this.select.value
+      const geoJson = adminBoundariesGeoJson['features'].find(
+        (f: any) => f['properties']['NAME'] === this.select.value
       );
       const codeCellContents =
         `print('${String(this.textarea.value)}')\n` +
