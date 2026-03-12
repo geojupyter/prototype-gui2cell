@@ -22,8 +22,7 @@ export class ExampleModel extends DOMWidgetModel {
       _model_module_version: ExampleModel.model_module_version,
       _view_name: ExampleModel.view_name,
       _view_module: ExampleModel.view_module,
-      _view_module_version: ExampleModel.view_module_version,
-      value: 'Hello World'
+      _view_module_version: ExampleModel.view_module_version
     };
   }
 
@@ -44,8 +43,12 @@ export class ExampleView extends DOMWidgetView {
   static tracker: INotebookTracker;
 
   private button!: HTMLButtonElement;
+  private textarea!: HTMLTextAreaElement;
 
   render() {
+    this.textarea = document.createElement('textarea');
+    this.textarea.value = this.model.get('value');
+
     this.button = document.createElement('button');
     this.button.textContent = 'test'; //this.model.get('value');
 
@@ -58,14 +61,14 @@ export class ExampleView extends DOMWidgetView {
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
-          source: 'print("hello hi")',
+          source: "print('" + String(this.textarea.value) + "')",
           metadata: {}
         }
       );
     };
 
+    this.el.appendChild(this.textarea);
     this.el.appendChild(this.button);
-
     this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
   }
