@@ -10,29 +10,13 @@ TO DO.
 
 ## Install
 
-To install the extension, execute:
-
-```bash
-pip install prototype_gui2cell
-```
-
-## Uninstall
-
-To remove the extension, execute:
-
-```bash
-pip uninstall prototype_gui2cell
-```
+Please follow the development install instructions.
 
 ## Contributing
 
 ### Development install
 
 Note: You will need NodeJS to build the extension package.
-
-The `jlpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `jlpm` below.
 
 ```bash
 # Clone the repo to your local environment
@@ -48,6 +32,9 @@ jupyter labextension develop . --overwrite
 # IMPORTANT: Unlike the steps above which are performed only once, do this step
 # every time you make a change.
 uv run jlpm build
+
+# Try it in JupyterLab
+uv run jupyter lab test.ipynb
 ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
