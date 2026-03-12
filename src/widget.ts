@@ -42,32 +42,62 @@ export class ExampleModel extends DOMWidgetModel {
 export class ExampleView extends DOMWidgetView {
   static tracker: INotebookTracker;
 
+  private select!: HTMLSelectElement;
   private button!: HTMLButtonElement;
   private textarea!: HTMLTextAreaElement;
 
   render() {
+    // TODO: Type as GeoJSON (@types/geojson)
+    const adminBoundariesGeoJson: any = JSON.parse(
+      this.model.get('admin_boundaries_geojson')
+    );
+    const countries = adminBoundariesGeoJson['features']
+      .map((f: any) => f['properties']['NAME'] as string)
+      .sort();
+
     this.textarea = document.createElement('textarea');
     this.textarea.value = this.model.get('value');
 
     this.button = document.createElement('button');
-    this.button.textContent = 'test'; //this.model.get('value');
+    this.button.textContent = 'Export to Python code cell';
+
+    this.select = document.createElement('select');
+    for (const country of countries) {
+      const option = document.createElement('option');
+      option.textContent = country;
+      this.select.appendChild(option);
+    }
+
+    const notebook = ExampleView.tracker?.currentWidget?.content;
 
     this.button.onclick = () => {
-      const notebook = ExampleView.tracker?.currentWidget?.content;
       if (!notebook?.model) {
         return;
-      }
+      } // Should never happen; just a typeguard
+
+      const geoJson = adminBoundariesGeoJson['features'].find(
+        (f: any) => f['properties']['NAME'] === this.select.value
+      );
+      const codeCellContents =
+        `print('${String(this.textarea.value)}')\n` +
+        'from ipyleaflet import Map, GeoJSON\n' +
+        'import json\n' +
+        'm = Map()\n' +
+        `m.add(GeoJSON(data=json.loads("""${JSON.stringify(geoJson)}""")))\n` +
+        'm';
+
       notebook.model.sharedModel.insertCell(
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
-          source: "print('" + String(this.textarea.value) + "')",
+          source: codeCellContents,
           metadata: {}
         }
       );
     };
 
     this.el.appendChild(this.textarea);
+    this.el.appendChild(this.select);
     this.el.appendChild(this.button);
     this.el.classList.add('custom-widget');
     this.model.on('change:value', this.value_changed, this);
