@@ -58,7 +58,7 @@ export class ExampleView extends DOMWidgetView {
     this.textarea.value = this.model.get('value');
 
     this.button = document.createElement('button');
-    this.button.textContent = 'test'; //this.model.get('value');
+    this.button.textContent = 'Export to Python code cell';
 
     this.select = document.createElement('select');
     for (const country of countries) {
