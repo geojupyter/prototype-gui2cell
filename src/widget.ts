@@ -68,11 +68,10 @@ export class ExampleView extends DOMWidgetView {
     }
 
     const notebook = ExampleView.tracker?.currentWidget?.content;
-    if (!notebook?.model) {
-      return;  // Should never happen; just a typeguard
-    }
 
     this.button.onclick = () => {
+      if (!notebook?.model) return;  // Should never happen; just a typeguard
+
       const geoJson = adminBoundariesGeoJson["features"].find(
         (f: any) => f["properties"]["NAME"] === this.select.value
       );
