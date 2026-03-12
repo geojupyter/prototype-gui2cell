@@ -44,7 +44,6 @@ export class ExampleView extends DOMWidgetView {
 
   private button!: HTMLButtonElement;
   private textarea!: HTMLTextAreaElement;
-  private select!: HTMLSelectElement;
 
   render() {
     this.textarea = document.createElement('textarea');
