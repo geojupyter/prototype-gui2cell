@@ -1,17 +1,13 @@
-import json
-import os
+from pathlib import Path
 
 from ipywidgets import DOMWidget
-from traitlets import List, Unicode, observe
+from traitlets import List, Unicode
 
 MODULE_NAME = "prototype-gui2cell"
 MODULE_VERSION = "^0.1.0"
 
-
-with open(
-    os.path.join(os.path.dirname(__file__), "data", "ne_110m_admin_0_countries.geojson")
-) as _f:
-    admin0 = json.load(_f)
+ADMIN_BOUNDARIES_GEOJSON_FILE = Path(__file__).parent / "data" / "ne_110m_admin_0_countries.geojson"
+ADMIN_BOUNDARIES_GEOJSON = ADMIN_BOUNDARIES_GEOJSON_FILE.read_text()
 
 
 class Gui2CellWidget(DOMWidget):
@@ -24,17 +20,7 @@ class Gui2CellWidget(DOMWidget):
     _view_module_version = Unicode(MODULE_VERSION).tag(sync=True)
 
     value = Unicode("Hello World").tag(sync=True)
-    countries = List(sorted(f["properties"]["NAME"] for f in admin0["features"])).tag(
-        sync=True
-    )
 
-    selected_country = Unicode("").tag(sync=True)
-    filtered_geojson = Unicode("").tag(sync=True)
-
-    @observe("selected_country")
-    def _on_selected_country_change(self, change):
-        feature = next(
-            (f for f in admin0["features"] if f["properties"]["NAME"] == change["new"]),
-            None,
-        )
-        self.filtered_geojson = json.dumps(feature) if feature else ""
+    # Probably no good reason to pass this data from Python to JS...
+    # Only needs to be synced unidirectionally, do we need the sync tag?
+    admin_boundaries_geojson = Unicode(ADMIN_BOUNDARIES_GEOJSON).tag(sync=True)

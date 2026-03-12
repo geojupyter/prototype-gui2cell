@@ -48,6 +48,12 @@ export class ExampleView extends DOMWidgetView {
   private textarea!: HTMLTextAreaElement;
 
   render() {
+    // TODO: Type as GeoJSON (@types/geojson)
+    const adminBoundariesGeoJson: any = JSON.parse(this.model.get('admin_boundaries_geojson'));
+    const countries = adminBoundariesGeoJson["features"].map(
+      (f: any) => f["properties"]["NAME"] as string
+    ).sort();
+
     this.textarea = document.createElement('textarea');
     this.textarea.value = this.model.get('value');
 
@@ -55,44 +61,38 @@ export class ExampleView extends DOMWidgetView {
     this.button.textContent = 'test'; //this.model.get('value');
 
     this.select = document.createElement('select');
-    for (const country of this.model.get('countries')) {
+    for (const country of countries) {
       const option = document.createElement('option');
       option.textContent = country;
       this.select.appendChild(option);
     }
 
+    const notebook = ExampleView.tracker?.currentWidget?.content;
+    if (!notebook?.model) {
+      return;  // Should never happen; just at typeguard
+    }
+    const notebookModel = notebook.model;
+
     this.button.onclick = () => {
+      const geoJson = adminBoundariesGeoJson["features"].find(
+        (f: any) => f["properties"]["NAME"] === this.select.value
+      );
+      const map_code =
+        'from ipyleaflet import Map, GeoJSON\n' +
+        'import json\n' +
+        'm = Map()\n' +
+        'm.add(GeoJSON(data=json.loads("""' + JSON.stringify(geoJson) + '""")))\n' +
+        'm'
+        ;
 
-      this.model.set('selected_country', this.select.value);
-      this.model.save_changes();
-
-      const notebook = ExampleView.tracker?.currentWidget?.content;
-      if (!notebook?.model) {
-        return;
-      }
-      const notebookModel = notebook.model;
-
-      this.model.on('change:filtered_geojson', () => {
-
-        const map_code =
-          'from ipyleaflet import Map, GeoJSON\n' +
-          'import json\n' +
-          'm = Map()\n' +
-          'm.add(GeoJSON(data=json.loads("""'+
-          this.model.get('filtered_geojson')+
-          '""")))\n' +
-          'm'
-          ;
-
-        notebookModel.sharedModel.insertCell(
-          notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
-          {
-            cell_type: 'code',
-            source: "print('" + String(this.textarea.value) + "')"+"\n" + map_code,
-            metadata: {}
-          }
-        );
-      });
+      notebookModel.sharedModel.insertCell(
+        notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
+        {
+          cell_type: 'code',
+          source: "print('" + String(this.textarea.value) + "')"+"\n" + map_code,
+          metadata: {}
+        }
+      );
     };
 
     this.el.appendChild(this.textarea);
