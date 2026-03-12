@@ -42,6 +42,8 @@ export class ExampleModel extends DOMWidgetModel {
 export class ExampleView extends DOMWidgetView {
   static tracker: INotebookTracker;
 
+
+  private select!: HTMLSelectElement;
   private button!: HTMLButtonElement;
   private textarea!: HTMLTextAreaElement;
 
