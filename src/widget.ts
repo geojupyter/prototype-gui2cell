@@ -71,7 +71,6 @@ export class ExampleView extends DOMWidgetView {
     if (!notebook?.model) {
       return;  // Should never happen; just a typeguard
     }
-    const notebookModel = notebook.model;
 
     this.button.onclick = () => {
       const geoJson = adminBoundariesGeoJson["features"].find(
@@ -85,7 +84,7 @@ export class ExampleView extends DOMWidgetView {
         'm'
         ;
 
-      notebookModel.sharedModel.insertCell(
+      notebook.model.sharedModel.insertCell(
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
