@@ -69,7 +69,7 @@ export class ExampleView extends DOMWidgetView {
 
     const notebook = ExampleView.tracker?.currentWidget?.content;
     if (!notebook?.model) {
-      return;  // Should never happen; just at typeguard
+      return;  // Should never happen; just a typeguard
     }
     const notebookModel = notebook.model;
 
