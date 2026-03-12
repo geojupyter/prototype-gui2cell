@@ -75,19 +75,19 @@ export class ExampleView extends DOMWidgetView {
       const geoJson = adminBoundariesGeoJson["features"].find(
         (f: any) => f["properties"]["NAME"] === this.select.value
       );
-      const map_code =
+      const codeCellContents =
+        `print('${String(this.textarea.value)}')\n` +
         'from ipyleaflet import Map, GeoJSON\n' +
         'import json\n' +
         'm = Map()\n' +
-        'm.add(GeoJSON(data=json.loads("""' + JSON.stringify(geoJson) + '""")))\n' +
-        'm'
-        ;
+        `m.add(GeoJSON(data=json.loads("""${JSON.stringify(geoJson)}""")))\n` +
+        'm';
 
       notebook.model.sharedModel.insertCell(
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
-          source: "print('" + String(this.textarea.value) + "')"+"\n" + map_code,
+          source: codeCellContents,
           metadata: {}
         }
       );
